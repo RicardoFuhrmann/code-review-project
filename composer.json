@@ -1,0 +1,11 @@
+{
+    "name": "ricardofuhrmann/code-review-project",
+    "description": "A simple project for code review purposes",
+    "type": "project",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    }
+}
