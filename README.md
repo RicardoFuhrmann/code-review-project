@@ -1,6 +1,6 @@
 # 🚀 Code Review Project
 
-This is simple PHP project for testing IA code review tools. The project use **Docker** and **Composer**, but you dont need to install composer localy.
+This is simple PHP project for testing IA code review tools. The project use **Docker** and **Composer**, but you don't need to install composer localy.
 
 ## 🛠️ Setup the project
 
