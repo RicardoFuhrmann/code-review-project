@@ -6,7 +6,18 @@ class TaskManager {
     private const DB_FILE = __DIR__ . '/../db/db.json';
 
     public static function getTasks() {
-        return json_decode(file_get_contents(self::DB_FILE), true) ?? [];
+        if (!file_exists(self::DB_FILE)) {
+            return [];
+        }
+
+        
+        $content = file_get_contents(self::DB_FILE);
+        if ($content === false) {
+            throw new \RuntimeException('Failed to read the database file.');
+        }
+
+        
+        return json_decode($content, true) ?? [];
     }
 
     public static function addTask($task) {
