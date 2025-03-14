@@ -23,4 +23,13 @@ class TaskManager {
         file_put_contents(self::DB_FILE, json_encode(array_values($filteredTasks), JSON_PRETTY_PRINT));
         return ['success' => true];
     }
+
+    public static function getDatabaseFromTaskManager($environment) {
+        switch ($environment) {
+            case 'development':
+                return self::DB_FILE;
+            case 'testing':
+                return __DIR__ . '/../db/db_test.json';
+        }
+    }
 }
