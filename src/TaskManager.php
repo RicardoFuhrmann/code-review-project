@@ -25,11 +25,9 @@ class TaskManager {
     }
 
     public static function getDatabaseFromTaskManager($environment) {
-        switch ($environment) {
-            case 'development':
-                return self::DB_FILE;
-            case 'testing':
-                return __DIR__ . '/../db/db_test.json';
-        }
+        return match ($environment) {
+            'development' => self::DB_FILE,
+            'testing' => __DIR__ . '/../db/db_test.json',
+        };
     }
 }
