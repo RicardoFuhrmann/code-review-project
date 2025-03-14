@@ -24,7 +24,7 @@ class TaskManager {
         return ['success' => true];
     }
 
-    public static function getDatabaseFromTaskManager($environment) {
+    public static function getDatabaseFromTaskManager($environment): int {
         return match ($environment) {
             'development' => self::DB_FILE,
             'testing' => __DIR__ . '/../db/db_test.json',
