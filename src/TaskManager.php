@@ -23,4 +23,14 @@ class TaskManager {
         file_put_contents(self::DB_FILE, json_encode(array_values($filteredTasks), JSON_PRETTY_PRINT));
         return ['success' => true];
     }
+
+    public static function getTaskById(string $id) {
+        $tasquis = self::getTasks();
+        foreach ($tasquis as $tasqui) {
+            if ($tasqui['id'] === $id) {
+                return $tasqui;
+            }
+        }
+        return null;
+    }
 }
