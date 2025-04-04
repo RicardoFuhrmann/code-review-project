@@ -23,4 +23,33 @@ class TaskManager {
         file_put_contents(self::DB_FILE, json_encode(array_values($filteredTasks), JSON_PRETTY_PRINT));
         return ['success' => true];
     }
+
+    public static function updateTask($id, $task) {
+        $tasks = self::getTasks();
+        foreach ($tasks as &$t) {
+            if ($t['id'] === $id) {
+                $t['task'] = $task;
+            }
+        }
+        file_put_contents(self::DB_FILE, json_encode($tasks, JSON_PRETTY_PRINT));
+        return ['success' => true];
+    }
+
+    public static function notifyWhenAddTask(array $tasks): array {
+        $task = self::addTask($tasks);
+        if (isset($task['success'])) {
+            $email = $task['email'];
+            $name = $task['name'];
+            $addedDate = $task['$addedDate'];
+
+            return [
+                'success' => true,
+                'email' => $email,
+                'name' => $name,
+                'addedDate' => $addedDate
+            ];
+        }
+
+        return ['success' => false];
+    }
 }
