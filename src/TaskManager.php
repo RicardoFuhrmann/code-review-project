@@ -23,4 +23,11 @@ class TaskManager {
         file_put_contents(self::DB_FILE, json_encode(array_values($filteredTasks), JSON_PRETTY_PRINT));
         return ['success' => true];
     }
+
+    public static function getDatabaseFromEnvironment(string $environment): string {
+        return match ($environment) {
+            'test' => __DIR__ . '/../db/test_db.json',
+            'production' => __DIR__ . '/../db/prod_db.json',
+        };
+    }
 }
