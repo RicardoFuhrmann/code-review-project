@@ -23,4 +23,10 @@ class TaskManager {
         file_put_contents(self::DB_FILE, json_encode(array_values($filteredTasks), JSON_PRETTY_PRINT));
         return ['success' => true];
     }
+
+    public static function importTasks(array $taskList) {
+        foreach ($taskList as $task) {
+            self::addTask($task);
+        }
+    }
 }
