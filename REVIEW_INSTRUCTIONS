@@ -1,0 +1,112 @@
+Naming Conventions
+
+Use clear, descriptive names. Functions should start with verbs.
+Bad: function f() {}
+Good: function calculateCustomerAge() {}
+
+Use camelCase for variables/functions.
+Bad: $customer_name = "John";
+Good: $customerName = "John";
+
+Use PascalCase for class names.
+Bad: class customerInfo {}
+Good: class CustomerInfo {}
+
+Use full words or well-known acronyms (e.g., enableIdn), avoid abbreviations.
+
+Formatting and Structure
+Braces & Indentation: Place opening brace on the same line.
+
+Bad:
+if ($condition)
+{
+    echo "True";
+}
+
+Good:
+if ($condition) {
+    echo "True";
+}
+
+Line Length: Keep lines under 80 characters. Break long chains.
+
+Bad:
+CustomerInfo::withName("John")->withAge(30)->withCity("NY")->withEmail("x");
+
+Good:
+CustomerInfo::withName("John")
+    ->withAge(30)
+    ->withCity("NY")
+    ->withEmail("x");
+
+Blank Lines: Separate logic blocks but don’t overuse.
+
+Bad:
+public function getInfo() {
+
+    $info = Get::info();
+    if (!$info) {
+        throw new Exception();
+    }
+    return $info;
+
+}
+
+Good:
+public function getInfo() {
+    $info = Get::info();
+
+    if (!$info) {
+        throw new Exception();
+        return null;
+    }
+
+    return $info;
+}
+
+Comments: Write self-explanatory code.
+
+Bad:
+// Load info
+$info = $this->load($id);
+
+Good:
+$paymentInfo = $this->loadPaymentInfoOrCry();
+
+3. Code Organization
+
+Whitespace: Use spaces around operators and after commas.
+
+Bad: if($info){...}
+Good: if ($info) { ... }
+
+Method Order: Public methods first, then protected, then private.
+
+Bad:
+public function exec() { ... }
+private function helper() { ... }
+
+Good:
+public function exec() { ... }
+private function helper() { ... }
+
+Modularization: Split responsibilities into smaller classes.
+
+Bad:
+class ChargeAction {
+    public function createRequest() { ... }
+    private function createBody() { ... }
+}
+
+Good:
+class ChargeAction {
+    public function createRequest() {
+        $httpRequest = new ChargeRequest();
+    }
+}
+class ChargeRequest {
+    private function createBody() { ... }
+}
+
+4. Best Practices
+Always declare method and property visibility (public, private, protected) to ensure encapsulation.
