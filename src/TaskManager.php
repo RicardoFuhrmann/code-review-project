@@ -16,11 +16,4 @@ class TaskManager {
         file_put_contents(self::DB_FILE, json_encode($tasks, JSON_PRETTY_PRINT));
         return $newTask;
     }
-
-    public static function deleteTask($id) {
-        $tasks = self::getTasks();
-        $filteredTasks = array_filter($tasks, fn($t) => $t['id'] !== $id);
-        file_put_contents(self::DB_FILE, json_encode(array_values($filteredTasks), JSON_PRETTY_PRINT));
-        return ['success' => true];
-    }
 }
