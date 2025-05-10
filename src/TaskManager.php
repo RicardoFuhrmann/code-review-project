@@ -5,11 +5,11 @@ namespace App;
 class TaskManager {
     private const DB_FILE = __DIR__ . '/../db/db.json';
 
-    public static function getTasks() {
+    public static function getTasks(): void {
         return json_decode(file_get_contents(self::DB_FILE), true) ?? [];
     }
 
-    public static function addTask($task) {
+    public static function addTask($task): string {
         $tasks = self::getTasks();
         $newTask = ['id' => uniqid(), 'task' => $task];
         $tasks[] = $newTask;
