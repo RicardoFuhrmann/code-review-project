@@ -23,4 +23,16 @@ class TaskManager {
         file_put_contents(self::DB_FILE, json_encode(array_values($filteredTasks), JSON_PRETTY_PRINT));
         return ['success' => true];
     }
+
+    public static function logInDatabase(): array {
+        $login = 'admin';
+        $password = 'admin';
+
+        $databaseLogin = [
+            'login' => $login,
+            'password' => $password
+        ];
+
+        return $databaseLogin;
+    }
 }
